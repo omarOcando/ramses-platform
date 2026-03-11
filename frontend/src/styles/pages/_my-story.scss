@@ -1,0 +1,218 @@
+@use "../abstracts/variables" as *;
+
+.myStory {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
+
+.myStory__hero {
+  position: relative;
+  height: calc(100vh - 65px);
+  width: 100%;
+  overflow: hidden;
+}
+
+.myStory__hero-image {
+  position: absolute;
+  inset: 0;
+}
+
+.myStory__hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+}
+
+.myStory__hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1050px;
+  padding: 120px 80px;
+}
+
+.myStory__hero-title {
+  font-size: clamp(40px, 4vw, 68px);
+  color: $main-color-2;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 80px;
+
+  text-shadow:
+    0 4px 20px rgba(0,0,0,0.6),
+    0 2px 6px rgba(0,0,0,0.8);
+}
+
+.myStory__hero-subtitle {
+  font-size: clamp(20px, 1.8vw, 28px);
+  color: $bg-clear-color;
+  max-width: 600px;
+  line-height: 1.6;
+
+  text-shadow:
+    0 2px 12px rgba(0,0,0,0.8);
+}
+
+/* Story */
+
+.myStory__story {
+  padding: 120px 10%;
+  background: $bg-clear-color;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.myStory__story-container {
+  max-width: 900px;
+}
+
+.myStory__story-text {
+  font-size: 20px;
+  line-height: 1.8;
+  color: $bg-dark-color;
+  text-align: center;
+}
+
+/* Experience */
+
+.myStory__experience {
+  padding: 120px 10%;
+  background: $bg-dark-color;
+  color: $bg-clear-color;
+  height: 60vh;
+  align-content: center;
+}
+
+.myStory__experience-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.myStory__experience-intro {
+  font-size: 20px;
+  line-height: 1.8;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+/* Cards */
+
+.myStory__experience-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.myStory__experience-card {
+  padding: 35px;
+  border: 1px solid rgba(255,255,255,0.3);
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.5;
+  transition: all .25s ease;
+
+  &:hover {
+    border-color: $main-color-1;
+    transform: translateY(-5px);
+  }
+}
+
+/* Philosophy */
+
+.myStory__philosophy {
+  background: $bg-clear-color;
+  height: 100vh;
+}
+
+.myStory__philosophy-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+}
+
+.myStory__philosophy-text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 80%;
+  padding-left: 100px;
+}
+
+.myStory__philosophy-paragraph {
+  font-size: 20px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: $bg-dark-color;
+}
+
+.myStory__philosophy-cta {
+  margin-top: 30px;
+}
+
+.myStory__philosophy button {
+  font-size: 18px;
+}
+
+.myStory__philosophy-image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.myStory__philosophy-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 11%;
+  display: block;
+}
+
+/* Responsive */
+
+@media (max-width: 1452px) {
+  .myStory__hero {
+    height: calc(100vh - 65px);
+  }
+
+  .myStory__hero-image img {
+    object-position: 66% center;
+  }
+
+  .myStory__hero-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: none;
+    text-align: center;
+    align-items: center;
+    justify-content: end;
+    padding: 60px 25px;
+  }
+
+  .myStory__hero-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .myStory__hero-subtitle {
+    font-size: 16px;
+  }
+
+  .myStory__story-text {
+    font-size: 18px;
+  }
+
+  .myStory__experience-intro {
+    font-size: 18px;
+  }
+
+  .myStory__philosophy-paragraph {
+    font-size: 18px;
+  }
+}

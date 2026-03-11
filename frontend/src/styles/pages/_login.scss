@@ -1,0 +1,87 @@
+@use "../abstracts/variables" as *;
+
+.login-page {
+  min-height: calc(100vh - 275px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $bg-dark-color;
+  padding: 40px;
+}
+
+/* Card */
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #111;
+  padding: 42px;
+  border-radius: $border-radius;
+  border: 1px solid rgba(212,175,55,0.25);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 20px rgba(212,175,55,0.05);
+  text-align: center;
+}
+
+/* Titles */
+
+.login-title {
+  font-size: 30px;
+  font-weight: 500;
+  color: $bg-clear-color;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.login-subtitle {
+  font-size: 15px;
+  color: $bg-clear-color;
+  opacity: 0.65;
+  margin-bottom: 30px;
+}
+
+/* Form */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+/* Inputs */
+
+.login-form input {
+  padding: 12px 14px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: $border-radius;
+  color: $bg-clear-color;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: $main-color-1;
+  box-shadow: 0 0 8px rgba(212,175,55,0.35);
+}
+
+/* Footer */
+
+.login-footer {
+  margin-top: 22px;
+  font-size: 14px;
+  opacity: 0.8;
+  color: $bg-clear-color;
+}
+
+.login-footer a {
+  color: $main-color-1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}

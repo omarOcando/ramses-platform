@@ -1,0 +1,67 @@
+@use "../abstracts/variables" as *;
+
+.what-couples-say {
+  padding: 80px 80px;
+  max-width: 100%;
+
+  &__title {
+    font-size: 35px;
+    margin-bottom: 40px;
+    color: $bg-dark-color;
+  }
+
+  &__list {
+    display: grid;
+    gap: 30px;
+  }
+
+  &__card {
+    padding: 25px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+  }
+
+  &__text {
+    font-style: italic;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  &__author {
+    font-weight: 600;
+    color: #222;
+  }
+}
+
+@media (max-width: $tablet) {
+  .what-couples-say {
+    max-width: 80%;
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .what-couples-say {
+    max-width: 100%;
+    padding: 60px 25px;
+  }
+
+  .what-couples-say__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .what-couples-say {
+    padding: 50px 20px;
+  }
+
+  .what-couples-say__title {
+    font-size: 24px;
+  }
+
+  .what-couples-say__card {
+    grid-template-columns: 1fr;
+  }
+}

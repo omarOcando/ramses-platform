@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as *;
+
+.do-you-feel-this {
+  padding: 80px 80px;
+  max-width: 50%;
+
+  &__title {
+    font-size: 35px;
+    margin-bottom: 40px;
+    color: $bg-dark-color;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  &__card {
+    padding: 25px;
+    border: 1px solid #929292;
+    background-color: $bg-clear-color;
+  }
+
+  &__card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  &__card-text {
+    color: #555;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: $tablet) {
+  .do-you-feel-this {
+    max-width: 80%;
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .do-you-feel-this {
+    max-width: 100%;
+    padding: 60px 25px;
+  }
+
+  .do-you-feel-this__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .do-you-feel-this {
+    padding: 50px 20px;
+  }
+
+  .do-you-feel-this__title {
+    font-size: 24px;
+  }
+
+  .do-you-feel-this__grid {
+    grid-template-columns: 1fr;
+  }
+}

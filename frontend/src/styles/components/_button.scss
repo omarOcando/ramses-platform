@@ -1,0 +1,40 @@
+@use "../abstracts/variables" as *;
+
+.button {
+    padding: 8px 16px;
+    border-radius: $border-radius;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.button:hover {
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    filter: brightness(1.2);
+}
+  
+/* Variants */
+.button--primary {
+    background: $main-color-1;
+    color: $bg-dark-color;
+    font-size: 16px;
+}
+  
+.button--secondary {
+    background: $main-color-2;
+    color: $bg-clear-color;
+    font-size: 16px;
+}
+
+.button--book {
+    background: $main-color-1;
+    color: $bg-dark-color;
+}
+  
+.button--booked {
+    background: #c94c4c;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.85;
+}

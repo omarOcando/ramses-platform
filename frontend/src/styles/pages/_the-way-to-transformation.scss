@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as *;
+
+.transformation {
+  padding: 80px 80px;
+  max-width: 100%;
+
+  &__title {
+    font-size: 35px;
+    margin-bottom: 40px;
+    color: $bg-dark-color;
+  }
+
+  &__intro {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  &__section {
+    margin-bottom: 40px;
+  }
+
+  &__section-title {
+    font-size: 22px;
+    color: $bg-dark-color;
+    margin-bottom: 10px;
+  }
+
+  &__section-text {
+    color: #555;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: $tablet) {
+  .transformation {
+    max-width: 80%;
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .transformation {
+    max-width: 100%;
+    padding: 60px 25px;
+  }
+
+  .transformation__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .transformation {
+    padding: 50px 20px;
+  }
+
+  .transformation__title {
+    font-size: 24px;
+  }
+
+  .transformation__section {
+    grid-template-columns: 1fr;
+  }
+}

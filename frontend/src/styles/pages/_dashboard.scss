@@ -1,0 +1,123 @@
+@use "../abstracts/variables" as *;
+
+.dashboard {
+  padding: 80px;
+  background-color: $bg-clear-color;
+  min-height: calc(100vh - 275px);
+
+  &__title {
+    font-size: 35px;
+    color: $bg-dark-color;
+    padding-bottom: 20px;
+  }
+
+  &__slots-count {
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ababab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--available {
+      background-color: #fefecc;
+    }
+
+    &--booked {
+      background-color: #fddbdb;
+    }
+  }
+}
+
+.calendar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 2px;
+}
+
+.calendar-dot--available {
+  background: #c8a95b;
+}
+
+.calendar-dot--full {
+  background: #c44;
+}
+
+/* ---------------- ADMIN APPOINTMENTS ---------------- */
+
+.admin-appointments {
+  padding: 80px;
+  background-color: $bg-clear-color;
+  min-height: calc(100vh - 275px);
+
+  h2 {
+    font-size: 35px;
+    color: $bg-dark-color;
+    margin-bottom: 40px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ababab;
+    background: #f9f9f9;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  li div:first-child {
+    line-height: 1.6;
+    color: $bg-dark-color;
+  }
+
+  li strong {
+    color: $bg-dark-color;
+  }
+
+  li div:last-child {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 768px) {
+
+  .admin-appointments {
+
+    padding: 40px 25px;
+
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    li div:last-child {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+}

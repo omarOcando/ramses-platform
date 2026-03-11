@@ -1,0 +1,32 @@
+@use "../abstracts/variables" as *;
+
+.my-appointments {
+  padding: 80px;
+  background-color: $bg-clear-color;
+  min-height: calc(100vh - 275px);
+
+  &__title {
+    font-size: 35px;
+    margin-bottom: 40px;
+    color: $bg-dark-color;
+  }
+
+  &__empty {
+    color: #666;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ababab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fddbdb;
+  }
+}

@@ -1,0 +1,257 @@
+@use "../abstracts/variables" as *;
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
+
+.home__hero {
+  height: calc(100vh - 65px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  padding: 10px 20px 0 80px;
+  overflow: hidden;
+}
+
+/* Left side */
+
+.home__hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 720px;
+  padding-top: 30px;
+}
+
+.logo-desktop {
+  width: clamp(108px, 15vw, 320px);
+  margin-bottom: 40px;
+}
+
+.logo-mobile {
+  display: none;
+}
+
+.home__title {
+  color: $main-color-2;
+  font-weight: 700;
+  font-size: clamp(36px, 4.2vw, 78px);
+  line-height: 1.18;
+  margin-left: 10px;
+  text-shadow:
+  0 2px 6px rgba(0,0,0,0.35),
+  0 8px 20px rgba(0,0,0,0.25);
+}
+
+.home__subtitle {
+  color: $bg-dark-color;
+  font-size: clamp(18px, 1.8vw, 28px);
+  margin: 50px 0 0 10px;
+  line-height: 1.6;
+  max-width: 520px;
+  text-shadow:
+  0 2px 6px rgba(0,0,0,0.35),
+  0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Right side */
+
+.home__hero-image {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+}
+
+/* Heart button */
+
+.home__heartBtn {
+  position: absolute;
+
+  /* Chest position */
+  top: 64%;
+  left: 45%;
+  width: 100px;
+  height: 100px;
+  background: $main-color-2;
+  border: none;
+  cursor: pointer;
+  transform: rotate(-45deg);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.home__heartBtn:hover {
+  animation: heartbeat 0.8s ease-in-out infinite;
+}
+
+.home__heartBtn::before,
+.home__heartBtn::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: $main-color-2;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.home__heartBtn::before {
+  top: -50%;
+  left: 0;
+}
+
+.home__heartBtn::after {
+  left: 50%;
+  top: 0;
+}
+
+.home__heartBtn-span {
+  position: absolute;
+  width: 100%;
+  top: 35%;
+  left: 65%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  color: $bg-clear-color;
+  font-size: 28px;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* Heart animation */
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  25% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(0.95);
+  }
+  75% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+/* Section 2 */
+
+.home__section2 {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: $bg-clear-color;
+}
+
+.home__section2-image img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+.home__section2-text {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 80%;
+  padding-left: 100px;
+}
+
+.home__section2-title {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+.home__section2-subtitle {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 50px;
+}
+
+.home__section2 button {
+  font-size: 18px;
+}
+
+/* Responsive */
+
+@media (max-width: 1280px) {
+  .logo-desktop {
+    display: none;
+  }
+
+  .logo-mobile {
+    display: block;
+    width: 80px;
+    position: absolute;
+    top: 3%;
+    left: 4%;
+  }
+
+  .home__hero {
+    position: relative;
+    grid-template-columns: 1fr;
+    height: calc(100vh - 65px);
+    padding: 0;
+  }
+
+  .home__hero-content {
+    position: relative;
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    align-items: center;
+  }
+
+  .home__hero-image {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .home__hero-image img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .home__title {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    text-align: center;
+    padding-top: 44vh;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .home__subtitle {
+    position: absolute;
+    margin: 0;
+    height: 100%;
+    top: 0;
+    text-align: center;
+    font-size: 16px;
+    color: $main-color-1;
+    padding: 60vh 6% 0 6%;
+  }
+
+  .home__heartBtn {
+    top: 79%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg) scale(0.7);
+  }
+}

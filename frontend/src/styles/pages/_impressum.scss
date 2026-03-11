@@ -1,0 +1,85 @@
+@use "../abstracts/variables" as *;
+
+.impressum-page {
+    background-color: $bg-dark-color;
+}
+
+.impressum {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    background-color: $bg-clear-color;
+    color: $bg-dark-color;
+    line-height: 1.7;
+}
+
+/* Title */
+
+.impressum__title {
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Section titles */
+
+.impressum__subtitle {
+    font-family: "Playfair Display", serif;
+    font-size: 26px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/* Small subtitles */
+
+.impressum__subtitle2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Paragraphs */
+
+.impressum p {
+    margin-bottom: 18px;
+    font-size: 16px;
+}
+
+/* Strong texts */
+
+.impressum strong {
+    font-weight: 600;
+}
+
+/* Links */
+
+.impressum a {
+    color: $main-color-1;
+    text-decoration: none;
+    word-break: break-word;
+    transition: color 0.25s ease;
+}
+
+.impressum a:hover {
+    color: $main-color-2;
+    text-decoration: underline;
+}
+
+/* Responsive */
+
+@media (max-width: $mobile) {
+
+    .impressum {
+        padding: 60px 24px;
+    }
+
+    .impressum__title {
+        font-size: 32px;
+    }
+
+    .impressum__subtitle {
+        font-size: 22px;
+    }
+}
