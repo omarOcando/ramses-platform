@@ -17,6 +17,32 @@ const appointmentSchema = new mongoose.Schema(
       enum: ["pending", "approved", "cancelled"],
       default: "pending",
     },
+    attendanceStatus: {
+      type: String,
+      enum: ["pending", "show_up", "no_show"],
+      default: "pending",
+    },
+    sessionType: {
+      type: String,
+      enum: ["free", "paid_1", "paid_2", "paid_3", "paid_4"],
+      default: "free",
+    },
+    isPaidSessionMarked: {
+      type: Boolean,
+      default: false,
+    },
+    paidAmount: {
+      type: Number,
+      default: 0,
+    },
+    commissionAmount: {
+      type: Number,
+      default: 0,
+    },
+    paidAt: {
+      type: Date,
+      default: null,
+    },
     googleEventId: {
       type: String,
     },

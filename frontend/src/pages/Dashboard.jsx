@@ -9,6 +9,7 @@ import AdminAppointments from "./AdminAppointments";
 function Dashboard() {
   const [slots, setSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [bookingLoadingId, setBookingLoadingId] = useState(null);
   const { user } = useAuth();
 
   const isAdmin = user?.user?.role === "admin";
@@ -30,11 +31,14 @@ function Dashboard() {
 
   const handleBooking = async (availabilityId) => {
     try {
+      setBookingLoadingId(availabilityId);
       await createAppointment(availabilityId, user.token);
       alert("Appointment booked!");
       loadSlots();
     } catch (error) {
       alert(error.response?.data?.message || "Booking failed");
+    } finally {
+      setBookingLoadingId(null);
     }
   };
 
@@ -47,23 +51,44 @@ function Dashboard() {
   };
 
   const getDayStatus = (date) => {
-    const daySlots = slots.filter((slot) => isSameDay(slot.date, date));
+    const now = new Date();
+
+    const isPastDay =
+      date.getFullYear() < now.getFullYear() ||
+      (date.getFullYear() === now.getFullYear() &&
+        date.getMonth() < now.getMonth()) ||
+      (date.getFullYear() === now.getFullYear() &&
+        date.getMonth() === now.getMonth() &&
+        date.getDate() < now.getDate());
+
+    if (isPastDay) return null;
+
+    const daySlots = slots.filter((slot) => {
+      if (!isSameDay(slot.date, date)) return false;
+
+      const slotDateTime = new Date(slot.date);
+      const [hour, minute] = slot.startHour.split(":").map(Number);
+      slotDateTime.setHours(hour, minute, 0, 0);
+
+      return slotDateTime > now && !slot.isBooked;
+    });
 
     if (daySlots.length === 0) return null;
 
-    const hasAvailable = daySlots.some((slot) => !slot.isBooked);
-
-    return hasAvailable ? "available" : "full";
+    return "available";
   };
 
-  // ADMIN VIEW
+  // Admin view
+
   if (isAdmin) {
     return <AdminAppointments />;
   }
 
   return (
     <div className="dashboard">
-      <h2 className="dashboard__title">Book Your Session</h2>
+      <h2 className="dashboard__title">
+        Book Your Session, {user?.user?.name?.split(" ")[0]}
+      </h2>
 
       <Calendar
         onChange={setSelectedDate}
@@ -76,14 +101,23 @@ function Dashboard() {
 
           if (!status) return null;
 
-          return (
-            <div className={`calendar-dot calendar-dot--${status}`} />
-          );
+          return <div className={`calendar-dot calendar-dot--${status}`} />;
         }}
       />
 
       <p className="dashboard__slots-count">
-        {slots.filter((slot) => !slot.isBooked).length} slots available
+        {
+          slots.filter((slot) => {
+            const now = new Date();
+            const slotDateTime = new Date(slot.date);
+
+            const [hour, minute] = slot.startHour.split(":").map(Number);
+            slotDateTime.setHours(hour, minute, 0, 0);
+
+            return slotDateTime > now && !slot.isBooked;
+          }).length
+        }{" "}
+        slots available
       </p>
 
       <ul className="dashboard__list">
@@ -91,8 +125,9 @@ function Dashboard() {
           .filter((slot) => {
             const now = new Date();
             const slotDateTime = new Date(slot.date);
-            const hour = parseInt(slot.startHour.split(":")[0]);
-            slotDateTime.setHours(hour, 0, 0, 0);
+
+            const [hour, minute] = slot.startHour.split(":").map(Number);
+            slotDateTime.setHours(hour, minute, 0, 0);
 
             const isFuture = slotDateTime > now;
             const isSelectedDay = isSameDay(slot.date, selectedDate);
@@ -100,9 +135,13 @@ function Dashboard() {
             return isFuture && isSelectedDay;
           })
           .sort((a, b) => {
-            const hourA = parseInt(a.startHour.split(":")[0]);
-            const hourB = parseInt(b.startHour.split(":")[0]);
-            return hourA - hourB;
+            const [hourA, minuteA] = a.startHour.split(":").map(Number);
+            const [hourB, minuteB] = b.startHour.split(":").map(Number);
+
+            const totalMinutesA = hourA * 60 + minuteA;
+            const totalMinutesB = hourB * 60 + minuteB;
+
+            return totalMinutesA - totalMinutesB;
           })
           .map((slot) => (
             <li
@@ -113,23 +152,29 @@ function Dashboard() {
                   : "dashboard__item--available"
               }`}
             >
-              <div>
-                <strong>
-                  {new Date(slot.date).toLocaleDateString("es-ES", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                </strong>{" "}
-                — {slot.startHour} to {slot.endHour}
+              <div className="dashboard__info">
+                <p>
+                  <strong>
+                    {new Date(slot.date).toLocaleDateString("es-ES", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </strong>{" "}
+                  — {slot.startHour} to {slot.endHour}
+                </p>
               </div>
 
               <Button
                 variant={slot.isBooked ? "booked" : "book"}
-                disabled={slot.isBooked}
+                disabled={slot.isBooked || bookingLoadingId === slot._id}
                 onClick={() => handleBooking(slot._id)}
               >
-                {slot.isBooked ? "Booked" : "Book"}
+                {slot.isBooked
+                  ? "Booked"
+                  : bookingLoadingId === slot._id
+                  ? "Processing..."
+                  : "Book"}
               </Button>
             </li>
           ))}

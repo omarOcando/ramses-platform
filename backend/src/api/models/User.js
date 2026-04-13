@@ -24,6 +24,16 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "client"],
       default: "client",
     },
+    paymentCount: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
+    },
+    forceFirstPaidSession: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

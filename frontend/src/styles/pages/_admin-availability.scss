@@ -1,0 +1,269 @@
+@use "../abstracts/variables" as *;
+
+.adminAvailability {
+  padding: 120px 100px 100px 100px;
+  background-color: $bg-clear-color;
+  min-height: 100vh;
+  color: $bg-dark-color;
+
+  &__header {
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    font-size: 35px;
+    color: $bg-dark-color;
+    margin-bottom: 10px;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: rgba(39, 27, 18, 0.75);
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  &__panel {
+    background: #ffffff;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    box-shadow: 0 12px 28px rgba(39, 27, 18, 0.06);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__sectionTitle {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  &__helper {
+    font-size: 0.95rem;
+    color: rgba(39, 27, 18, 0.7);
+    margin-bottom: 1.4rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    flex: 1;
+
+    label {
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    input {
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(39, 27, 18, 0.12);
+      font-family: inherit;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+        border-color: $main-color-1;
+        box-shadow: 0 0 0 4px rgba(200, 169, 91, 0.15);
+      }
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+    }
+  }
+
+  &__formActions {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__item {
+    padding: 1.6rem 1.8rem;
+    border-radius: 24px;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(39, 27, 18, 0.06);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    transition: all 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(39, 27, 18, 0.1);
+    }
+
+    &--free {
+      border-left: 5px solid $approved;
+    }
+
+    &--booked {
+      border-left: 5px solid $cancelled;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    strong {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* RESPONSIVE */
+
+/* Desktop */
+
+@media (min-width: 1024px) {
+  .adminAvailability__field input[type="date"]::-webkit-calendar-picker-indicator {
+    transform: scale(1.35);
+    transform-origin: center;
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .adminAvailability {
+    padding: 110px 50px 80px 50px;
+
+    &__title {
+      font-size: 30px;
+    }
+
+    &__panel {
+      padding: 1.7rem;
+    }
+
+    &__item {
+      padding: 1.4rem 1.5rem;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    &__actions {
+      width: 100%;
+    }
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .adminAvailability {
+    padding: 100px 20px 60px 20px;
+
+    &__header {
+      margin-bottom: 24px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    &__subtitle {
+      font-size: 0.95rem;
+    }
+
+    &__panel {
+      padding: 1.3rem;
+      border-radius: 20px;
+    }
+
+    &__sectionTitle {
+      font-size: 1.2rem;
+    }
+
+    &__helper {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    &__form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__field {
+      width: 100%;
+      min-width: 100%;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &__formActions {
+      width: 100%;
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    &__item {
+      padding: 1.2rem;
+      border-radius: 20px;
+      gap: 1rem;
+    }
+
+    &__info {
+      width: 100%;
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      strong {
+        font-size: 1rem;
+      }
+    }
+
+    &__actions {
+      width: 100%;
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

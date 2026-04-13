@@ -1,5 +1,5 @@
 name,email,password,role
-Cliente 1,cliente1@test.com,123456,admin
+Admin Demo,admin@ramses-demo.com,Admin2025!,admin
 Cliente 2,cliente2@test.com,123456,client
 Cliente 3,cliente3@test.com,123456,client
 Cliente 4,cliente4@test.com,123456,client

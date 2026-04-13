@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser, loginUser } from "../controllers/user.controller.js";
+import { registerUser, loginUser, markUserAsPaidStart } from "../controllers/user.controller.js";
 import { protect } from "../../middleware/isAuth.js";
 import { isAdmin } from "../../middleware/isAdmin.js";
 
@@ -13,5 +13,6 @@ router.get("/profile", protect, (req, res) => {
 router.get("/admin-only", protect, isAdmin, (req, res) => {
     res.json({ message: "Welcome admin" });
 });
+router.patch("/:id/force-paid-start", protect, isAdmin, markUserAsPaidStart);
 
 export default router;

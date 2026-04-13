@@ -1,0 +1,206 @@
+@use "../abstracts/variables" as *;
+
+/* Loader inner reset */
+
+.loader,
+.loader * {
+  margin: 0;
+  padding: 0;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  background: $bg-dark-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.loader--visible {
+  opacity: 1;
+}
+
+.loader--fadeOut {
+  opacity: 0;
+}
+
+.loader__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Heart */
+
+.loader__heartWrap {
+  position: relative;
+  width: 100px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.loader__heart {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: $main-color-2;
+  transform: rotate(-45deg);
+  animation: heartbeat 1.6s ease-in-out infinite;
+  z-index: 2;
+}
+
+.loader__heart::before,
+.loader__heart::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: $main-color-2;
+  border-radius: 50%;
+}
+
+.loader__heart::before {
+  top: -30px;
+  left: 0;
+}
+
+.loader__heart::after {
+  left: 30px;
+  top: 0;
+}
+
+.loader__heartShadow {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75px;
+  height: 18px;
+  background: rgba(245, 233, 211, 0.42);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: heartShadowPulse 1.6s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Text */
+
+.loader__text {
+    color: $bg-clear-color;
+    font-size: clamp(24px, 5vw, 58px);
+    font-weight: 600;
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Bottom area */
+
+.loader__bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0 0 0 0;
+}
+
+.loader__bottomRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Percentage */
+
+.loader__percent {
+    color: $bg-clear-color;
+    font-size: 50px;
+    font-weight: 500;
+    opacity: 0.85;
+    padding-right: 20px;
+    margin-bottom: 6px;
+}
+
+/* Full-width progress bar */
+
+.loader__bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.loader__progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        $main-color-2 0%,
+        $main-color-1 100%
+    );
+    animation: loaderProgress 3s ease forwards;
+}
+
+/* Animations */
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  20% {
+    transform: rotate(-45deg) scale(1.06);
+  }
+  40% {
+    transform: rotate(-45deg) scale(0.98);
+  }
+  60% {
+    transform: rotate(-45deg) scale(1.09);
+  }
+  80% {
+    transform: rotate(-45deg) scale(1);
+  }
+}
+
+@keyframes heartShadowPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.38;
+  }
+  20% {
+    transform: translateX(-50%) scale(1.06);
+    opacity: 0.48;
+  }
+  40% {
+    transform: translateX(-50%) scale(0.96);
+    opacity: 0.28;
+  }
+  60% {
+    transform: translateX(-50%) scale(1.1);
+    opacity: 0.52;
+  }
+  80% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.4;
+  }
+}
+
+@keyframes loaderProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}

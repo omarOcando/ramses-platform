@@ -10,6 +10,9 @@ function Home() {
 
   return (
     <div className="home">
+      
+      {/* SECTION 1 - Hero */}
+
       <section className="home__hero">
         <div className="home__hero-content">
           <div className="home__logo">
@@ -27,17 +30,18 @@ function Home() {
             Book your private session and start improving your relationship
             today.
           </p>
+
+          <Button
+            className="home__ctaBtn"
+            variant="primary"
+            onClick={() => navigate("/dashboard")}
+          >
+            Start here
+          </Button>
         </div>
 
         <div className="home__hero-image">
           <img src={bg1Home} alt="Relationship coach Ramsés Viloria" />
-
-          <button
-            className="home__heartBtn"
-            onClick={() => navigate("/dashboard")}
-          >
-            <span className="home__heartBtn-span">Start here</span>
-          </button>
         </div>
       </section>
 
@@ -45,6 +49,8 @@ function Home() {
         <div className="home__section2-image">
           <img src={bg2Home} alt="Coach with his partner" />
         </div>
+
+        {/* SECTION 2 */}
 
         <div className="home__section2-text">
           <h2 className="home__section2-title">

@@ -56,11 +56,38 @@ export const loginUser = async (req, res) => {
       token,
       user: {
         id: user._id,
+        name: user.name,
         email: user.email,
         role: user.role,
       },
     });
 
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+/* Admin marks user to skip free session */
+
+export const markUserAsPaidStart = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.forceFirstPaidSession = true;
+    await user.save();
+
+    res.json({
+      message: "User marked to start with paid session",
+      user: {
+        id: user._id,
+        email: user.email,
+        forceFirstPaidSession: user.forceFirstPaidSession,
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

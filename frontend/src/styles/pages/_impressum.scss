@@ -6,7 +6,7 @@
 
 .impressum {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 120px auto 0 auto;
     padding: 80px 40px;
     background-color: $bg-clear-color;
     color: $bg-dark-color;
@@ -67,12 +67,13 @@
     text-decoration: underline;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 
 @media (max-width: $mobile) {
 
     .impressum {
         padding: 60px 24px;
+        margin: 80px auto 0 auto;
     }
 
     .impressum__title {

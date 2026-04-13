@@ -13,13 +13,15 @@ const createTransporter = () => {
 export const sendApprovalEmail = async (to, date, start, end) => {
   const transporter = createTransporter();
 
-  // Convertimos la fecha a string YYYY-MM-DD
-  const dateStr = new Date(date).toISOString().split("T")[0];
+    // Date visible to the user
 
-  // Formato para Google Calendar
-  const calendarDate = dateStr.replaceAll("-", "");
-  const startTime = start.replace(":", "") + "00";
-  const endTime = end.replace(":", "") + "00";
+    const formattedDate = new Date(date).toLocaleDateString("es-ES");
+
+    // Special date for Google Calendar (YYYYMMDD)
+
+    const calendarDate = new Date(date).toISOString().split("T")[0].replaceAll("-", "");
+    const startTime = start.replace(":", "") + "00";
+    const endTime = end.replace(":", "") + "00";
 
   await transporter.sendMail({
     from: `"Ramses Viloria" <${process.env.EMAIL_USER}>`,
@@ -28,9 +30,7 @@ export const sendApprovalEmail = async (to, date, start, end) => {
     html: `
       <h2>Your session has been approved</h2>
 
-      <p>Your coaching session has been confirmed.</p>
-
-      <p><strong>Date:</strong> ${dateStr}</p>
+      <p><strong>Date:</strong> ${formattedDate}</p>
       <p><strong>Time:</strong> ${start} - ${end}</p>
 
       <p>Looking forward to meeting you.</p>
@@ -47,7 +47,7 @@ export const sendApprovalEmail = async (to, date, start, end) => {
           background:#c8a95b;
           color:white;
           text-decoration:none;
-          border-radius:6px;
+          border-radius:50px;
           font-weight:bold;
         "
       >
@@ -76,7 +76,7 @@ export const sendCancellationEmail = async (to) => {
 export const notifyAdminNewBooking = async (userEmail, date, start, end) => {
   const transporter = createTransporter();
 
-  const dateStr = new Date(date).toISOString().split("T")[0];
+  const dateStr = new Date(date).toLocaleDateString("es-ES");
 
   await transporter.sendMail({
     from: `"Ramses Platform" <${process.env.EMAIL_USER}>`,

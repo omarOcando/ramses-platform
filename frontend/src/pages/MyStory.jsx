@@ -9,7 +9,7 @@ function MyStory() {
     <div className="myStory">
       <section className="myStory__hero">
         <div className="myStory__hero-image">
-          <img src={bg1MyStory} alt="Ramses Viloria" />
+          <img src={bg1MyStory} alt="Ramsés Viloria" />
         </div>
 
         <div className="myStory__hero-content">
@@ -19,7 +19,7 @@ function MyStory() {
           </h1>
 
           <p className="myStory__hero-subtitle">
-            I'm Ramses, a relationship coach, and when I tell you that an
+            I'm Ramsés, a relationship coach, and when I tell you that an
             extraordinary relationship is possible, it's because I've discovered
             that you need to create the right conditions for it. My mission is
             to help you achieve that.
@@ -90,7 +90,7 @@ function MyStory() {
               variant="primary"
               onClick={() => navigate("/dashboard")}
             >
-              Comienza tu transformación hoy
+              Start your transformation today
             </Button>
 
           </div>

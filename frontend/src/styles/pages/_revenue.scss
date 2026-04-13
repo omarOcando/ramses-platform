@@ -1,0 +1,162 @@
+@use "../abstracts/variables" as *;
+
+/* Revenue */
+
+.revenue {
+  padding: 120px 100px 100px 100px;
+  background-color: $bg-clear-color;
+  min-height: 100vh;
+  color: $bg-dark-color;
+
+  &__title {
+    font-size: 35px;
+    color: $bg-dark-color;
+    margin-bottom: 40px;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 40px;
+  }
+
+  &__card {
+    padding: 1.8rem 2rem;
+    border-radius: 24px;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(39, 27, 18, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(39, 27, 18, 0.1);
+    }
+  }
+
+  &__label {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 12px;
+  }
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $bg-dark-color;
+    margin: 0;
+  }
+
+  &__filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__filter-btn {
+    transition: all 0.25s ease;
+  }
+
+  &__filter-btn--active {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(210, 170, 56, 0.25);
+  }
+
+  &__section-title {
+    font-size: 1.45rem;
+    color: $bg-dark-color;
+    margin: 60px 0 10px 0;
+  }
+
+  &__list {
+    margin-top: 40px;
+  }
+  
+  &__empty {
+    color: #777;
+  }
+  
+  &__items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 1.6rem;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    box-shadow: 0 10px 24px rgba(39, 27, 18, 0.05);
+  }
+  
+  &__item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  
+  &__item-values {
+    text-align: right;
+    font-weight: 600;
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+  .revenue {
+    &__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .revenue {
+    padding: 100px 20px 80px 20px;
+
+    &__title {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    &__cards {
+      gap: 1rem;
+      margin-bottom: 30px;
+    }
+
+    &__card {
+      padding: 1.5rem;
+      border-radius: 20px;
+    }
+
+    &__label {
+      font-size: 0.9rem;
+    }
+
+    &__value {
+      font-size: 1.8rem;
+    }
+
+    &__filters {
+      flex-direction: column;
+
+      .button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    &__section-title {
+      text-align: center;
+    }
+  }
+}

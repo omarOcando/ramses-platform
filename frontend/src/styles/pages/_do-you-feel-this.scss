@@ -1,66 +1,544 @@
 @use "../abstracts/variables" as *;
 
-.do-you-feel-this {
-  padding: 80px 80px;
-  max-width: 50%;
+.doYouFeelThis {
+  background-color: $bg-clear-color;
+  color: $bg-dark-color;
 
-  &__title {
-    font-size: 35px;
-    margin-bottom: 40px;
-    color: $bg-dark-color;
+  /* SECTION 1 - Hero */
+
+  &__hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+    }
+  }
+
+  &__hero-overlay {
+    opacity: 20%;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.569) 0%,
+      rgba(0, 0, 0, 0.449) 38%,
+      rgba(0, 0, 0, 0.2) 68%,
+      rgba(0, 0, 0, 0.08) 100%
+    );
+  }
+
+  &__hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding-left: 100px;
+
+    h1 {
+      font-size: clamp(40px, 6vw, 70px);
+      color: $main-color-2;
+      font-weight: 700;
+      line-height: 1.2;
+      text-shadow:
+        0 2px 6px rgba(0,0,0,0.35),
+        0 8px 20px rgba(0,0,0,0.25);
+    }
+  }
+
+  &__hero-text {
+    max-width: 800px;
+    font-size: clamp(18px, 1.8vw, 28px);
+    color: $bg-clear-color;
+    text-shadow:
+    0 2px 12px rgba(0,0,0,0.8);
+  }
+
+  /* SECTION 2 - Empathy */
+
+  &__empathy {
+    padding: 6rem 8rem;
+  }  
+
+  &__section-heading {
+    text-align: center;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 4rem;
+      font-weight: 500;
+    }
+  }
+
+  &__section-label {
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    font-weight: 600;
+    color: #909090;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
   }
 
   &__card {
-    padding: 25px;
-    border: 1px solid #929292;
-    background-color: $bg-clear-color;
+    background-color: $main-color-2;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 6px 14px rgba(39, 27, 18, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    color: $bg-clear-color;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 45px rgba(39, 27, 18, 0.45);
+    }
   }
 
-  &__card-title {
-    font-size: 20px;
-    margin-bottom: 10px;
+  &__card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   }
 
-  &__card-text {
-    color: #555;
-    line-height: 1.6;
+  &__card-content {
+    padding: 1.5rem 2.5rem 2.5rem;
+
+    h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.18rem;
+      font-style: italic;
+      color: #aaaaaa;
+    }
+  }
+
+  /* SECTION 3 - Transition */
+
+  &__transition {
+    background-color: $bg-transition-color;
+    height: 50vh;
+    text-align: center;
+    align-content: center;
+  }
+
+  &__transition-container {
+    justify-items: center;
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 4rem;
+      color: $bg-clear-color;
+      font-weight: 500;
+    }
+  }
+
+  &__transition-text {
+    color: #909090;
+    max-width: 1000px;
+    font-size: clamp(16px, 2vw, 26px);
+  }
+
+  /* SECTION 4 - Help */
+
+  &__help {
+    background-color: $bg-dark-color;
+    height: 50vh;
+    text-align: center;
+    align-content: center;
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 4rem;
+      color: $bg-clear-color;
+      font-weight: 500;
+    }
+  }
+
+  &__help-text {
+    color: #909090;
+    max-width: 1200px;
+    font-size: clamp(20px, 1.8vw, 26px);
+    justify-self: center;
+    padding-bottom: 2rem;
+  }
+
+  &__actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* SECTION 5 - Closing */
+
+  &__closing {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__closing-content {
+    align-content: center;
+
+    h2 {
+      width: 100%;
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 6rem;
+      color: $bg-dark-color;
+      font-weight: 500;
+      padding: 0 6rem;
+    }
+  }
+
+  &__closing-media {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 
-@media (max-width: $tablet) {
-  .do-you-feel-this {
-    max-width: 80%;
-    padding: 60px 40px;
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .doYouFeelThis {
+    &__hero-media img {
+      object-position: 52% center;
+    }
+
+    &__hero-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.45) 45%,
+        rgba(0, 0, 0, 0.25) 100%
+      );
+    }
+
+    &__hero {
+      height: 100vh;
+      align-items: flex-end;
+    }
+
+    &__hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 38vh;
+    
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    
+      text-align: center;
+      gap: 30px;
+      padding: 6%;
+      z-index: 2;
+    }
+
+    &__hero-glass {
+      background: rgba(224, 224, 224, 0.42);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    &__hero-text {
+      padding: 0 2rem;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__hero-content {
+      padding-top: 2rem;
+    }
+
+    &__empathy {
+      padding: 4rem 3rem;
+    }
+
+    &__section-label {
+      font-size: 0.8rem;
+    }
+
+    &__card-content {
+      padding: 1rem 1.4rem 1.7rem;
+
+      h3 {
+        font-size: 1.75rem;
+        margin-bottom: 0.8rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+    }
+
+    &__transition-container {  
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    &__transition-text {
+      max-width: 700px;
+      font-size: 18px;
+    }
+
+    &__help {
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+  
+    &__help-text {
+      max-width: 820px;
+      font-size: 18px;
+    }
+  
+    &__actions {
+      margin-top: 1rem;
+
+      Button {
+        font-size: 14px;
+      }
+    }
+
+    &__closing-content {  
+      h2 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+        margin-bottom: 6rem;
+        padding: 0 3.2rem;
+      }
+    }
+  
+    &__closing-media {  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
   }
 }
 
 @media (max-width: 768px) {
-  .do-you-feel-this {
-    max-width: 100%;
-    padding: 60px 25px;
-  }
+  .doYouFeelThis {
+    &__hero-media img {
+      object-position: 52% center;
+    }
 
-  .do-you-feel-this__title {
-    font-size: 28px;
-  }
-}
+    &__hero-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.45) 45%,
+        rgba(0, 0, 0, 0.25) 100%
+      );
+    }
 
-@media (max-width: $mobile) {
-  .do-you-feel-this {
-    padding: 50px 20px;
-  }
+    &__hero {
+      height: 100vh;
+      align-items: flex-end;
+    }
 
-  .do-you-feel-this__title {
-    font-size: 24px;
-  }
+    &__hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 38vh;
+    
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    
+      text-align: center;
+      gap: 30px;
+      padding: 2% 4% 4% 4%;
+      z-index: 2;
+    }
 
-  .do-you-feel-this__grid {
-    grid-template-columns: 1fr;
+    &__hero-glass {
+      background: rgba(224, 224, 224, 0.42);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    &__hero-text {
+      padding: 0 0.5rem;
+    }
+
+    &__empathy {
+      padding: 3rem 1.5rem;
+    }  
+
+    &__section-label {
+      font-size: 0.7rem;
+    }
+
+    &__section-heading {
+      h2 {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    &__card-content {
+        padding: 1rem 1rem 1.7rem;
+
+        h3 {
+          font-size: 1.4rem;
+          margin-bottom: 0.8rem;
+        }
+
+        p {
+          font-size: 0.86rem;
+          line-height: 1.5;
+        }
+    }
+
+    &__transition {
+      height: 40vh;
+    }
+
+    &__transition-container {  
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.8rem;
+        padding: 0 1.5rem;
+      }
+    }
+
+    &__transition-text {
+      max-width: none;
+      font-size: 14px;
+      padding: 0 1rem;
+    }
+
+    &__help {
+      height: 60vh;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.8rem;
+      }
+    }
+  
+    &__help-text {
+      max-width: none;
+      font-size: 14px;
+      padding: 0 1rem;
+    }
+
+    &__actions {
+      margin-top: 2rem;
+
+      Button {
+        font-size: 12px;
+      }
+    }
+
+    &__closing {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50vh 50vh;
+    }
+
+    &__closing-media {
+      order: 1;
+      height: 100%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+        display: block;
+      }
+    }
+
+    &__closing-content {
+      order: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    &__closing-content h2 {
+      font-size: 1.4rem;
+      line-height: 1.2;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+    }
+
+    &__closing .doYouFeelThis__actions {
+      margin-top: 0;
+    }
   }
 }

@@ -22,7 +22,7 @@ const seedAppointments = async () => {
       appointmentsToInsert.push({
         user: users[i]._id,
         availability: availabilities[i]._id,
-        status: "approved",
+        status: i < 5 ? "pending" : "approved",
       });
 
       availabilities[i].isBooked = true;

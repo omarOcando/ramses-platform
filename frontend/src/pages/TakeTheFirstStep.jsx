@@ -21,7 +21,7 @@ function TakeTheFirstStep() {
             briefly about your situation and we'll schedule a free initial session.
           </p>
 
-          <p className="takeFirstStep__hero-highlight">Talk to me directly</p>
+          <p className="takeFirstStep__hero-highlight">Talk to me directly.</p>
 
           <p className="takeFirstStep__hero-text">
             Press the button and let's talk on WhatsApp.

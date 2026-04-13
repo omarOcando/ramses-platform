@@ -1,14 +1,15 @@
 @use "../abstracts/variables" as *;
 
 .dashboard {
-  padding: 80px;
+  padding: 120px 100px 100px 100px;
   background-color: $bg-clear-color;
-  min-height: calc(100vh - 275px);
+  min-height: 100vh;
+  color: $bg-dark-color;
 
   &__title {
     font-size: 35px;
     color: $bg-dark-color;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
   }
 
   &__slots-count {
@@ -21,29 +22,70 @@
   }
 
   &__item {
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 1px solid #ababab;
+    padding: 1.4rem 1.6rem;
+    border-radius: 24px;
+    border: 1px solid rgba(39, 27, 18, 0.08);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    box-shadow: 0 10px 24px rgba(39, 27, 18, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin-bottom: 15px;
 
-    &--available {
-      background-color: #fefecc;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(39, 27, 18, 0.1);
     }
 
-    &--booked {
-      background-color: #fddbdb;
+    &--available, &--booked {
+      background: #ffffff;
     }
   }
 }
 
+.react-calendar {
+  width: 100%;
+  max-width: 720px;
+  border: none;
+  border-radius: 28px;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(39, 27, 18, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+.react-calendar__navigation {
+  margin-bottom: 1rem;
+
+  button {
+    color: $bg-dark-color;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 44px;
+    background: transparent;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: $bg-dark-color;
+  margin-bottom: 0.5rem;
+}
+
 .calendar-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   margin: 0 auto;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .calendar-dot--available {
@@ -54,12 +96,12 @@
   background: #c44;
 }
 
-/* ---------------- ADMIN APPOINTMENTS ---------------- */
+/* Admin Appointments */
 
 .admin-appointments {
-  padding: 80px;
+  padding: 120px 100px 100px 100px;
   background-color: $bg-clear-color;
-  min-height: calc(100vh - 275px);
+  min-height: 100vh;
 
   h2 {
     font-size: 35px;
@@ -70,43 +112,143 @@
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
   }
 
   li {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ababab;
-    background: #f9f9f9;
-
+    padding: 1.6rem 1.8rem;
+    border-radius: 24px;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(39, 27, 18, 0.06);
+  
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-  }
-
-  li div:first-child {
-    line-height: 1.6;
-    color: $bg-dark-color;
-  }
-
-  li strong {
-    color: $bg-dark-color;
+    gap: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(39, 27, 18, 0.1);
+    }
   }
 
   li div:last-child {
     display: flex;
-    gap: 10px;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__session-type {
+    font-weight: 700;
+  }
+
+  &__session-type--free {
+    color: $approved;
+  }
+
+  &__session-type--paid {
+    color: $main-color-1;
+  }
+
+  &__status {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  &__status--approved {
+    color: $approved;
+  }
+
+  &__status--cancelled {
+    color: $cancelled;
+  }
+
+  &__status--pending {
+    color: $main-color-1;
+  }
+
+  &__attendance {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  &__attendance--show_up {
+    color: $approved;
+  }
+  
+  &__attendance--no_show {
+    color: $cancelled;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    gap: 0.7rem;
+    flex: 1;
+    min-width: 0;
+  
+    p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.2;
+      color: $bg-dark-color;
+      text-align: left;
+      width: 100%;
+    }
+  
+    strong {
+      font-weight: 700;
+      color: $bg-dark-color;
+      font-size: 1.05rem;
+    }
   }
 }
 
-
-/* ---------------- RESPONSIVE ---------------- */
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
+  .dashboard {
+    padding: 100px 20px 80px 20px;
+
+    &__title {
+      font-size: 30px;
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    &__item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  
+    &__info {
+      width: 100%;
+    }
+  
+    .button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
 
   .admin-appointments {
+    padding: 100px 25px 40px 25px;
 
-    padding: 40px 25px;
+    h2 {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
     li {
       flex-direction: column;
@@ -119,5 +261,4 @@
       justify-content: flex-start;
     }
   }
-
 }

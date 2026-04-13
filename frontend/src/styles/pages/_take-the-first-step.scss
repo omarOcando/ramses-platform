@@ -6,11 +6,11 @@
   background-color: $bg-clear-color;
 }
 
-/* Hero */
+/* SECTION 1 - Hero */
 
 .takeFirstStep__hero {
   position: relative;
-  height: calc(100vh - 65px);
+  height: 100vh;
   width: 100%;
   overflow: hidden;
 }
@@ -32,7 +32,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 25%;
 }
 
 .takeFirstStep__hero-content {
@@ -45,15 +45,15 @@
 }
 
 .takeFirstStep__hero-title {
-  font-size: clamp(40px, 4vw, 68px);
+  font-size: clamp(40px, 4vw, 70px);
   font-weight: 700;
   color: $main-color-2;
   line-height: 1.2;
   margin-bottom: 20px;
   padding-right: 15%;
   text-shadow:
-    0 4px 20px rgba(0,0,0,0.6),
-    0 2px 6px rgba(0,0,0,0.8);
+    0 2px 6px rgba(0,0,0,0.35),
+    0 8px 20px rgba(0,0,0,0.25);
 }
 
 .takeFirstStep__hero-text {
@@ -75,11 +75,7 @@
   margin-bottom: 40px;
 }
 
-.takeFirstStep__hero-cta button {
-  font-size: 18px;
-}
-
-/* Contact */
+/* section 2 - Contact */
 
 .takeFirstStep__contact {
   display: grid;
@@ -140,7 +136,7 @@
   color: $bg-dark-color;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 
 @media (max-width: 1200px) {
   .takeFirstStep__hero-content {
@@ -169,19 +165,29 @@
   }
 
   .takeFirstStep__hero-content {
-    padding: 60px 10px;
+    padding: 0 8px 10px 8px;
     text-align: center;
     max-width: none;
     margin: 0;
   }
 
   .takeFirstStep__hero-title {
-    font-size: 32px;
+    font-size: 36px;
     padding-right: 0;
   }
 
+  .takeFirstStep__hero-highlight {
+    color: $bg-clear-color;
+    font-size: 16px;
+  }
+
   .takeFirstStep__hero-text {
-    font-size: 18px;
+    font-size: 16px;
+    padding: 0 8px 0 8px;
+  }
+
+  .takeFirstStep__hero-cta Button {
+    font-size: 14px;
   }
 
   .takeFirstStep__contact-text {
@@ -191,6 +197,7 @@
   
   .takeFirstStep__contact-emailText {
     font-size: 14px;
+    line-height: 1.6;
     margin-bottom: 20px;
     padding: 0;
   }
@@ -204,14 +211,15 @@
   }
   
   .takeFirstStep__contact-message {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.6;
   }
   
   .takeFirstStep__contact-signature {
-    font-size: 22px;
+    font-size: 20px;
   }
   
   .takeFirstStep__contact-role {
-    font-size: 14px;
+    font-size: 12px;
   }
 }

@@ -78,3 +78,36 @@
   font-size: 14px;
   opacity: 0.7;
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .footer {
+    height: auto;
+    padding: 40px 24px 32px;
+  }
+
+  .footer__socials {
+    gap: 20px;
+  }
+
+  .footer__legal {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 36px 16px 28px;
+  }
+
+  .footer__socials a {
+    font-size: 18px;
+  }
+
+  .footer__legal {
+    font-size: 12px;
+  }
+}

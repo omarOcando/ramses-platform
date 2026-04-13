@@ -1,32 +1,115 @@
 @use "../abstracts/variables" as *;
 
+/* My Appointments */
+
 .my-appointments {
-  padding: 80px;
+  padding: 120px 100px 100px 100px;
   background-color: $bg-clear-color;
-  min-height: calc(100vh - 275px);
+  min-height: 100vh;
+  color: $bg-dark-color;
 
   &__title {
     font-size: 35px;
-    margin-bottom: 40px;
     color: $bg-dark-color;
+    margin-bottom: 40px;
   }
 
   &__empty {
-    color: #666;
+    font-size: 1rem;
+    color: #777;
   }
 
   &__list {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
   }
 
   &__item {
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 1px solid #ababab;
+    padding: 1.6rem 1.8rem;
+    border-radius: 24px;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(39, 27, 18, 0.06);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fddbdb;
+    gap: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(39, 27, 18, 0.1);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.8rem;
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.2;
+      color: $bg-dark-color;
+    }
+  }
+
+  &__status {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  &__status--approved {
+    color: $approved;
+  }
+
+  &__status--cancelled {
+    color: $cancelled;
+  }
+
+  &__status--pending {
+    color: $main-color-1;
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: $tablet) {
+  .my-appointments {
+    padding: 120px 40px 80px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-appointments {
+    padding: 100px 20px 80px 20px;
+
+    &__title {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    &__item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    &__info {
+      width: 100%;
+    }
+
+    .button {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }
