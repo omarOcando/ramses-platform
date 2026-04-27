@@ -1,0 +1,30 @@
+@use "../abstracts/variables" as *;
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input__label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  text-align: left;
+}
+
+.input__field {
+  padding: 12px 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: $border-radius;
+  color: $bg-clear-color;
+  font-size: 15px;
+  transition: all 0.25s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $main-color-1;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.35);
+  }
+}

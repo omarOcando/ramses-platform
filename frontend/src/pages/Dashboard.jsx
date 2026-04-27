@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { getAvailableSlots } from "../services/availabilityService";
 import { createAppointment } from "../services/appointmentService";
 import { useAuth } from "../context/AuthContext";
+import { useNotification } from "../context/NotificationContext";
 import Button from "../components/Button";
+import Card from "../components/Card";
 import AdminAppointments from "./AdminAppointments";
 
 function Dashboard() {
@@ -11,6 +13,7 @@ function Dashboard() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [bookingLoadingId, setBookingLoadingId] = useState(null);
   const { user } = useAuth();
+  const { notify } = useNotification();
 
   const isAdmin = user?.user?.role === "admin";
 
@@ -25,7 +28,7 @@ function Dashboard() {
       const data = await getAvailableSlots(user.token);
       setSlots(data);
     } catch (error) {
-      console.error("Error loading slots:", error);
+      notify("Error loading available slots", "error");
     }
   };
 
@@ -33,10 +36,10 @@ function Dashboard() {
     try {
       setBookingLoadingId(availabilityId);
       await createAppointment(availabilityId, user.token);
-      alert("Appointment booked!");
+      notify("Appointment booked!", "success");
       loadSlots();
     } catch (error) {
-      alert(error.response?.data?.message || "Booking failed");
+      notify(error.response?.data?.message || "Booking failed", "error");
     } finally {
       setBookingLoadingId(null);
     }
@@ -120,65 +123,66 @@ function Dashboard() {
         slots available
       </p>
 
-      <ul className="dashboard__list">
-        {slots
+      {(() => {
+        const now = new Date();
+        const daySlots = slots
           .filter((slot) => {
-            const now = new Date();
             const slotDateTime = new Date(slot.date);
-
             const [hour, minute] = slot.startHour.split(":").map(Number);
             slotDateTime.setHours(hour, minute, 0, 0);
-
-            const isFuture = slotDateTime > now;
-            const isSelectedDay = isSameDay(slot.date, selectedDate);
-
-            return isFuture && isSelectedDay;
+            return slotDateTime > now && isSameDay(slot.date, selectedDate);
           })
           .sort((a, b) => {
             const [hourA, minuteA] = a.startHour.split(":").map(Number);
             const [hourB, minuteB] = b.startHour.split(":").map(Number);
+            return hourA * 60 + minuteA - (hourB * 60 + minuteB);
+          });
 
-            const totalMinutesA = hourA * 60 + minuteA;
-            const totalMinutesB = hourB * 60 + minuteB;
+        if (daySlots.length === 0) {
+          return <p className="dashboard__no-slots">No available slots for this day.</p>;
+        }
 
-            return totalMinutesA - totalMinutesB;
-          })
-          .map((slot) => (
-            <li
-              key={slot._id}
-              className={`dashboard__item ${
-                slot.isBooked
-                  ? "dashboard__item--booked"
-                  : "dashboard__item--available"
-              }`}
-            >
-              <div className="dashboard__info">
-                <p>
-                  <strong>
-                    {new Date(slot.date).toLocaleDateString("es-ES", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
-                  </strong>{" "}
-                  — {slot.startHour} to {slot.endHour}
-                </p>
-              </div>
-
-              <Button
-                variant={slot.isBooked ? "booked" : "book"}
-                disabled={slot.isBooked || bookingLoadingId === slot._id}
-                onClick={() => handleBooking(slot._id)}
+        return (
+          <ul className="dashboard__list">
+            {daySlots.map((slot) => (
+              <Card
+                as="li"
+                key={slot._id}
+                className={`dashboard__item ${
+                  slot.isBooked
+                    ? "dashboard__item--booked"
+                    : "dashboard__item--available"
+                }`}
               >
-                {slot.isBooked
-                  ? "Booked"
-                  : bookingLoadingId === slot._id
-                  ? "Processing..."
-                  : "Book"}
-              </Button>
-            </li>
-          ))}
-      </ul>
+                <div className="dashboard__info">
+                  <p>
+                    <strong>
+                      {new Date(slot.date).toLocaleDateString("es-ES", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}
+                    </strong>{" "}
+                    — {slot.startHour} to {slot.endHour}
+                  </p>
+                </div>
+
+                <Button
+                  variant={slot.isBooked ? "booked" : "book"}
+                  disabled={slot.isBooked || bookingLoadingId === slot._id}
+                  onClick={() => handleBooking(slot._id)}
+                >
+                  {slot.isBooked
+                    ? "Booked"
+                    : bookingLoadingId === slot._id
+                    ? "Processing..."
+                    : "Book"}
+                </Button>
+              </Card>
+            ))}
+          </ul>
+        );
+      })()}
     </div>
   );
 }

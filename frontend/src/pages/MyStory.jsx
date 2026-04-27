@@ -98,7 +98,7 @@ function MyStory() {
           <div className="myStory__philosophy-image">
             <img
               src={bg2MyStory}
-              alt="Relationship coach Ramses Viloria"
+              alt="Relationship coach Ramsés Viloria"
             />
           </div>
         </div>

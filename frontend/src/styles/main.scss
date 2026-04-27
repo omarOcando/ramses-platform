@@ -8,6 +8,10 @@
 /* COMPONENTS */
 @use "./components/calendar";
 @use "./components/button";
+@use "./components/notification";
+@use "./components/input";
+@use "./components/card";
+@use "./components/modal";
 
 /* LAYOUT */
 @use "./components/layout/header";
@@ -27,6 +31,7 @@
 @use "./pages/my-appointments";
 @use "./pages/impressum";
 @use "./pages/admin-availability";
+@use "./pages/admin-users";
 @use "./pages/revenue";
 
 .appFade {

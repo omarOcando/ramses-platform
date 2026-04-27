@@ -149,7 +149,7 @@
 
 /* Desktop */
 
-@media (min-width: 1024px) {
+@media (min-width: $tablet) {
   .adminAvailability__field input[type="date"]::-webkit-calendar-picker-indicator {
     transform: scale(1.35);
     transform-origin: center;
@@ -158,7 +158,7 @@
 
 /* Tablet */
 
-@media (max-width: 1024px) {
+@media (max-width: $tablet) {
   .adminAvailability {
     padding: 110px 50px 80px 50px;
 
@@ -184,7 +184,7 @@
 
 /* Mobile */
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .adminAvailability {
     padding: 100px 20px 60px 20px;
 

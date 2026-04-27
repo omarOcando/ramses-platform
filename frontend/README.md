@@ -1,12 +1,17 @@
 # Frontend Application
 
+![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=flat&logo=sass&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=react-router&logoColor=white)
+
 React client application for the Ramses Relationship Coaching Platform.
 
 Built with **React + Vite** and structured using a modular **SCSS architecture**.
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 * React
 * React Router
@@ -16,7 +21,7 @@ Built with **React + Vite** and structured using a modular **SCSS architecture**
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 The frontend follows a modular architecture:
 
@@ -28,7 +33,7 @@ The frontend follows a modular architecture:
 
 ---
 
-## Folder Structure
+## 📁 Folder Structure
 
 src
 │
@@ -38,6 +43,8 @@ src
 │   └── layout
 │
 ├── context
+│
+├── hooks
 │
 ├── pages
 │
@@ -55,7 +62,7 @@ src
 
 ---
 
-## Features
+## ✅ Features
 
 * Authentication
 * Protected routes
@@ -67,20 +74,23 @@ src
 
 ---
 
-## Run Project
+## 🚀 Run Project
 
 Install dependencies:
+```bash
 npm install
+```
 
 Start development server:
+```bash
 npm run dev
+```
 
-Application runs on:
-http://localhost:5173
+Application runs on: `http://localhost:5173`
 
 ---
 
-## Styling Architecture
+## 🎨 Styling Architecture
 
 The project uses a structured SCSS architecture:
 

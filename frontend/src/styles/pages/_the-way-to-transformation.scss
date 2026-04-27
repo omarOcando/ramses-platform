@@ -40,7 +40,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .transformation {
     max-width: 100%;
     padding: 60px 25px;

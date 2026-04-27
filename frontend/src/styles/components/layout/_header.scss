@@ -225,7 +225,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .header {
     padding: 0;
   }

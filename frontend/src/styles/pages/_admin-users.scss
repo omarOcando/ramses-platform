@@ -1,0 +1,137 @@
+@use "../abstracts/variables" as *;
+
+.adminUsers {
+  padding: 120px 100px 100px 100px;
+  background-color: $bg-clear-color;
+  min-height: 100vh;
+  color: $bg-dark-color;
+
+  &__header {
+    margin-bottom: 40px;
+  }
+
+  &__title {
+    font-size: 35px;
+    color: $bg-dark-color;
+    margin-bottom: 10px;
+  }
+
+  &__subtitle {
+    color: #777;
+    font-size: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 1.6rem;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid rgba(39, 27, 18, 0.08);
+    box-shadow: 0 10px 24px rgba(39, 27, 18, 0.05);
+    gap: 1rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    p { margin: 0; }
+  }
+
+  &__role {
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+
+    &--admin {
+      background: rgba(79, 142, 247, 0.12);
+      color: #4f8ef7;
+    }
+
+    &--client {
+      background: rgba(39, 27, 18, 0.07);
+      color: $bg-dark-color;
+    }
+  }
+
+  &__date {
+    font-size: 0.85rem;
+    color: #999;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: $bg-dark-color;
+    }
+
+    input,
+    select {
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(39, 27, 18, 0.15);
+      font-size: 0.95rem;
+      color: $bg-dark-color;
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        border-color: $main-color-1;
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile-lg) {
+  .adminUsers {
+    padding: 100px 20px 80px 20px;
+
+    &__title {
+      font-size: 28px;
+    }
+
+    &__item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__actions {
+      width: 100%;
+
+      .button {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+  }
+}

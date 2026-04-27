@@ -1,0 +1,58 @@
+@use "../abstracts/variables" as *;
+
+.notifications {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification {
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  animation: notificationSlideIn 0.3s ease;
+  max-width: 320px;
+
+  &--success {
+    background: $approved;
+  }
+
+  &--error {
+    background: $main-color-2;
+  }
+
+  &--warning {
+    background: $main-color-1;
+    color: $bg-dark-color;
+  }
+}
+
+@keyframes notificationSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: $mobile) {
+  .notifications {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+  }
+
+  .notification {
+    max-width: 100%;
+  }
+}

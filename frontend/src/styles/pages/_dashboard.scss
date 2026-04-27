@@ -16,31 +16,23 @@
     margin-bottom: 20px;
   }
 
+  &__no-slots {
+    font-size: 1rem;
+    color: rgba(39, 27, 18, 0.55);
+    margin: 1rem 0;
+  }
+
   &__list {
     list-style: none;
     padding: 0;
   }
 
   &__item {
-    padding: 1.4rem 1.6rem;
-    border-radius: 24px;
-    border: 1px solid rgba(39, 27, 18, 0.08);
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    box-shadow: 0 10px 24px rgba(39, 27, 18, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
     margin-bottom: 15px;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 34px rgba(39, 27, 18, 0.1);
-    }
-
-    &--available, &--booked {
-      background: #ffffff;
-    }
   }
 }
 
@@ -215,7 +207,7 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .dashboard {
     padding: 100px 20px 80px 20px;
 

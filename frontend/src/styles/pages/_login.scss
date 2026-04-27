@@ -49,24 +49,6 @@
   gap: $spacing-md;
 }
 
-/* Inputs */
-
-.login-form input {
-  padding: 12px 14px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: $border-radius;
-  color: $bg-clear-color;
-  font-size: 15px;
-  transition: all 0.25s ease;
-}
-
-.login-form input:focus {
-  outline: none;
-  border-color: $main-color-1;
-  box-shadow: 0 0 8px rgba(212,175,55,0.35);
-}
-
 /* Footer */
 
 .login-footer {
@@ -88,8 +70,7 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 768px) {
-
+@media (max-width: $mobile-lg) {
   .login-card {
     padding: 30px;
     

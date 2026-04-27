@@ -81,7 +81,7 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .footer {
     height: auto;
     padding: 40px 24px 32px;
@@ -98,7 +98,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: $mobile) {
   .footer {
     padding: 36px 16px 28px;
   }

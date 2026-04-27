@@ -1,5 +1,10 @@
 # Backend API
 
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=flat&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white)
+![Nodemailer](https://img.shields.io/badge/Email-Nodemailer-22B573?style=flat&logo=gmail&logoColor=white)
+
 Node.js + Express REST API for the Ramses Relationship Coaching Platform.
 
 Responsible for:
@@ -12,7 +17,7 @@ Responsible for:
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 * Node.js
 * Express
@@ -23,7 +28,7 @@ Responsible for:
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 The backend follows a modular architecture:
 
@@ -35,76 +40,83 @@ The backend follows a modular architecture:
 
 ---
 
-## Folder Structure
+## 📁 Folder Structure
 
 src
 │
 ├── api
 │   ├── controllers
+│   │
 │   ├── models
+│   │
 │   └── routes
 │
 ├── config
-│   └── db.js
+│
+├── data
 │
 ├── middleware
-│   ├── isAuth.js
-│   └── isAdmin.js
 │
 ├── seeds
 │
 └── utils
-    ├── jwt.js
-    └── googleCalendar.js
 
 ---
 
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Auth / Users
 
+```
 POST /api/users/register
 POST /api/users/login
-GET /api/users/profile
+GET  /api/users/profile
+```
 
 ---
 
 ### Appointments
 
-GET /api/appointments
-GET /api/appointments/my
-POST /api/appointments
-PATCH /api/appointments/:id
+```
+GET    /api/appointments
+GET    /api/appointments/my
+POST   /api/appointments
+PATCH  /api/appointments/:id
 DELETE /api/appointments/:id
+```
 
 ---
 
 ### Availability
 
-GET /api/availability
+```
+GET  /api/availability
 POST /api/availability
+```
 
 ---
 
-## Run Server
+## 🚀 Run Server
 
 Install dependencies:
+```bash
 npm install
+```
 
 Start development server:
+```bash
 npm run dev
+```
 
-Server runs on:
-http://localhost:3000
+Server runs on: `http://localhost:3000`
 
 ---
 
-## Environment Variables
+## 🔐 Environment Variables
 
-Create ".env" file in the root of the backend folder.
+Create a `.env` file in the root of the backend folder:
 
-Example:
-
+```env
 MONGO_URI=
 PORT=3000
 JWT_SECRET=
@@ -112,10 +124,11 @@ GOOGLE_APPLICATION_CREDENTIALS=
 EMAIL_USER=
 EMAIL_PASS=
 SYSTEME_API_KEY=
+```
 
 ---
 
-## Security
+## 🛡️ Security
 
 Authentication is handled using JSON Web Tokens (JWT).
 Protected routes require a valid token and some endpoints require admin privileges.

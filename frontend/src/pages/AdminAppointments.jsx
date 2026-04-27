@@ -7,10 +7,12 @@ import {
   convertToPaidSession,
 } from "../services/appointmentService";
 import { AuthContext } from "../context/AuthContext";
+import { useNotification } from "../context/NotificationContext";
 import Button from "../components/Button";
 
 function AdminAppointments() {
   const { user } = useContext(AuthContext);
+  const { notify } = useNotification();
 
   const [appointments, setAppointments] = useState([]);
 
@@ -24,7 +26,7 @@ function AdminAppointments() {
       const data = await getAllAppointments(user.token);
       setAppointments(data);
     } catch (error) {
-      console.error("Error loading appointments:", error);
+      notify("Error loading appointments", "error");
     }
   };
 
@@ -37,9 +39,9 @@ function AdminAppointments() {
       setLoadingAction({ id, type: "approve" });
       await updateAppointmentStatus(id, "approved", user.token);
       await loadAppointments();
-      alert("Appointment approved successfully");
+      notify("Appointment approved successfully", "success");
     } catch (error) {
-      alert("Error approving appointment");
+      notify(error.response?.data?.message || "Error approving appointment", "error");
     } finally {
       setLoadingAction({ id: null, type: null });
     }
@@ -50,9 +52,9 @@ function AdminAppointments() {
       setLoadingAction({ id, type: "cancel" });
       await updateAppointmentStatus(id, "cancelled", user.token);
       await loadAppointments();
-      alert("Appointment cancelled successfully");
+      notify("Appointment cancelled successfully", "success");
     } catch (error) {
-      alert("Error cancelling appointment");
+      notify("Error cancelling appointment", "error");
     } finally {
       setLoadingAction({ id: null, type: null });
     }
@@ -63,9 +65,9 @@ function AdminAppointments() {
       setLoadingAction({ id, type: "show_up" });
       await markAttendance(id, "show_up", user.token);
       await loadAppointments();
-      alert("Attendance marked as SHOW UP");
+      notify("Attendance marked as SHOW UP", "success");
     } catch (error) {
-      alert(error.response?.data?.message || "Error marking attendance");
+      notify(error.response?.data?.message || "Error marking attendance", "error");
     } finally {
       setLoadingAction({ id: null, type: null });
     }
@@ -76,9 +78,9 @@ function AdminAppointments() {
       setLoadingAction({ id, type: "no_show" });
       await markAttendance(id, "no_show", user.token);
       await loadAppointments();
-      alert("Attendance marked as NO SHOW");
+      notify("Attendance marked as NO SHOW", "success");
     } catch (error) {
-      alert(error.response?.data?.message || "Error marking attendance");
+      notify(error.response?.data?.message || "Error marking attendance", "error");
     } finally {
       setLoadingAction({ id: null, type: null });
     }
@@ -92,7 +94,7 @@ function AdminAppointments() {
     const paidAmount = Number(amountInput);
 
     if (isNaN(paidAmount) || paidAmount <= 0) {
-      alert("Please enter a valid amount.");
+      notify("Please enter a valid amount.", "warning");
       return;
     }
 
@@ -100,9 +102,9 @@ function AdminAppointments() {
       setLoadingAction({ id, type: "paid_session" });
       await markPaidSession(id, paidAmount, user.token);
       await loadAppointments();
-      alert("Paid session marked successfully");
+      notify("Paid session marked successfully", "success");
     } catch (error) {
-      alert(error.response?.data?.message || "Error marking paid session");
+      notify(error.response?.data?.message || "Error marking paid session", "error");
     } finally {
       setLoadingAction({ id: null, type: null });
     }
@@ -111,14 +113,11 @@ function AdminAppointments() {
   const handleConvertToPaid = async (id) => {
     try {
       setLoadingAction({ id, type: "convert_paid" });
-
       await convertToPaidSession(id, user.token);
-
       await loadAppointments();
-
-      alert("Session converted to paid successfully");
+      notify("Session converted to paid successfully", "success");
     } catch (error) {
-      alert(error.response?.data?.message || "Error converting session");
+      notify(error.response?.data?.message || "Error converting session", "error");
     } finally {
       setLoadingAction({ id: null, type: null });
     }
@@ -167,7 +166,7 @@ function AdminAppointments() {
               <li key={appt._id}>
                 <div className="admin-appointments__info">
                   <p>
-                    <strong>{appt.user?.name ?? "Usuario eliminado"}</strong> — {appt.user?.email ?? "—"}
+                    <strong>{appt.user?.name ?? "Deleted user"}</strong> — {appt.user?.email ?? "—"}
                   </p>
 
                   <p>

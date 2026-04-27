@@ -2,7 +2,9 @@ import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { loginUser } from "../services/authService";
+import { useNotification } from "../context/NotificationContext";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +12,7 @@ function Login() {
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { notify } = useNotification();
 
   const handleSubmit = async (e) => {
 
@@ -22,7 +25,7 @@ function Login() {
 
       navigate("/dashboard");
     } catch (error) {
-      alert("Login failed");
+      notify("Login failed. Check your email and password.", "error");
     }
   };
 
@@ -41,19 +44,19 @@ function Login() {
 
         <form className="login-form" onSubmit={handleSubmit}>
 
-          <input
+          <Input
             type="email"
             placeholder="Email"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
 
-          <input
+          <Input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
 

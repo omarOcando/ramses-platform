@@ -41,7 +41,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .what-couples-say {
     max-width: 100%;
     padding: 60px 25px;

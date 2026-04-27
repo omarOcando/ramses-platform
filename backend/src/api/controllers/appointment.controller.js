@@ -33,6 +33,17 @@ export const createAppointment = async (req, res) => {
         .json({ message: "This time slot is already booked" });
     }
 
+    const activeAppointments = await Appointment.countDocuments({
+      user: req.user._id,
+      status: { $in: ["pending", "approved"] },
+    });
+
+    if (activeAppointments >= 8) {
+      return res.status(400).json({
+        message: "You have reached the maximum of 8 active bookings.",
+      });
+    }
+
     const user = await User.findById(req.user._id);
 
     const freeSessionUsed = await Appointment.findOne({
@@ -166,28 +177,31 @@ export const updateAppointmentStatus = async (req, res) => {
           ? "FREE SESSION"
           : `PAID SESSION ${appointment.sessionType.split("_")[1]}`;
 
-      const googleEvent = await calendar.events.insert({
-        calendarId: "ramses.beziehungscoach@gmail.com",
-        requestBody: {
-          summary: `Coaching Session – ${appointment.user.name}`,
-          description: `
-      Client: ${appointment.user.name}
-      Email: ${appointment.user.email}
-      Session Type: ${formattedSessionType}
-      Platform: Ramsés Platform
-      `,
-          start: {
-            dateTime: startDateTime.toISOString(),
-            timeZone: "Europe/Berlin",
+      try {
+        const googleEvent = await calendar.events.insert({
+          calendarId: "ramses.beziehungscoach@gmail.com",
+          requestBody: {
+            summary: `Coaching Session – ${appointment.user.name}`,
+            description: `
+        Client: ${appointment.user.name}
+        Email: ${appointment.user.email}
+        Session Type: ${formattedSessionType}
+        Platform: Ramsés Platform
+        `,
+            start: {
+              dateTime: startDateTime.toISOString(),
+              timeZone: "Europe/Berlin",
+            },
+            end: {
+              dateTime: endDateTime.toISOString(),
+              timeZone: "Europe/Berlin",
+            },
           },
-          end: {
-            dateTime: endDateTime.toISOString(),
-            timeZone: "Europe/Berlin",
-          },
-        },
-      });
-
-      appointment.googleEventId = googleEvent.data.id;
+        });
+        appointment.googleEventId = googleEvent.data.id;
+      } catch (error) {
+        console.log("Google Calendar failed:", error.message);
+      }
 
       try {
         await sendApprovalEmail(

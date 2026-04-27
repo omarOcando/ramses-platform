@@ -248,7 +248,7 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 1024px) {
+@media (max-width: $tablet) {
   .doYouFeelThis {
     &__hero-media img {
       object-position: 52% center;
@@ -378,7 +378,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .doYouFeelThis {
     &__hero-media img {
       object-position: 52% center;

@@ -1,0 +1,59 @@
+@use "../abstracts/variables" as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: modalFadeIn 0.2s ease;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.25s ease;
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $bg-dark-color;
+    margin-bottom: 1.8rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 1.8rem;
+  }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: $mobile-lg) {
+  .modal {
+    margin: 0 1rem;
+    padding: 1.8rem;
+  }
+}

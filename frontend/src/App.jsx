@@ -16,6 +16,7 @@ import MyAppointments from "./pages/MyAppointments";
 import AdminAppointments from "./pages/AdminAppointments";
 import AdminAvailability from "./pages/AdminAvailability";
 import Revenue from "./pages/Revenue";
+import AdminUsers from "./pages/AdminUsers";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import { useState } from "react";
@@ -92,6 +93,14 @@ function App() {
             element={
               <AdminRoute>
                 <Revenue />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <AdminRoute>
+                <AdminUsers />
               </AdminRoute>
             }
           />

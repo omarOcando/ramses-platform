@@ -131,6 +131,14 @@ function Header() {
                     >
                       Revenue
                     </NavLink>
+
+                    <NavLink
+                      to="/admin/users"
+                      className="header__link"
+                      onClick={closeMenu}
+                    >
+                      Users
+                    </NavLink>
                   </>
                 ) : (
                   <>

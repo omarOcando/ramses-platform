@@ -28,22 +28,10 @@
   }
 
   &__item {
-    padding: 1.6rem 1.8rem;
-    border-radius: 24px;
-    border: 1px solid rgba(39, 27, 18, 0.08);
-    background: #ffffff;
-    box-shadow: 0 12px 28px rgba(39, 27, 18, 0.06);
-
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 38px rgba(39, 27, 18, 0.1);
-    }
   }
 
   &__info {
@@ -87,7 +75,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-lg) {
   .my-appointments {
     padding: 100px 20px 80px 20px;
 
